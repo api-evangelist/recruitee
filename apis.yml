@@ -1,0 +1,170 @@
+aid: recruitee
+name: Recruitee
+description: >-
+  Recruitee (part of Tellent) is a collaborative applicant tracking system
+  (ATS) and recruiting platform that helps growing companies build hiring
+  pipelines, publish careers sites, manage candidates, schedule interviews,
+  and collaborate on hiring decisions. Its REST API at https://api.recruitee.com
+  exposes endpoints for candidates, offers, placements, departments, tags,
+  evaluations, interviews, mailboxes, and reports, scoped to a company by
+  the path segment /c/{company_id}. Authentication uses a Bearer personal
+  API token generated from Settings, Apps and plugins, Personal API tokens,
+  with permissions inherited from the creator's Hiring role.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Recruiting
+  - ATS
+  - Applicant Tracking
+  - HR
+  - Hiring
+  - Careers Site
+  - Tellent
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/recruitee/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: recruitee:company-api
+    name: Recruitee Company (ATS) API
+    description: >-
+      REST API for admin-side ATS operations including candidates, offers
+      (job openings), placements, departments, requisitions, tags,
+      evaluations, scheduled interviews, mailbox messages, and reports.
+      All endpoints are scoped to a company via /c/{company_id} and require
+      a Bearer personal API token in the Authorization header.
+    humanURL: https://docs.recruitee.com/reference/getting-started
+    baseURL: https://api.recruitee.com/c/{company_id}
+    tags:
+      - ATS
+      - Recruiting
+      - REST API
+      - Bearer Token
+    properties:
+      - type: Documentation
+        url: https://docs.recruitee.com/reference/getting-started
+      - type: Authentication
+        url: https://support.recruitee.com/en/articles/1066282-api-documentation
+      - type: FAQ
+        url: https://support.recruitee.com/en/articles/8213076-faq-api
+  - aid: recruitee:careers-site-api
+    name: Recruitee Careers Site API
+    description: >-
+      Public, read-only API used by careers sites and embedded job widgets
+      to fetch published offers, departments, and locations for unauthenticated
+      job seekers. Backs the careers.recruitee.com hosted pages and
+      embeddable widgets.
+    humanURL: https://docs.recruitee.com/reference/quickstart
+    baseURL: https://{company}.recruitee.com/api
+    tags:
+      - Careers Site
+      - Public API
+      - Job Listings
+    properties:
+      - type: Documentation
+        url: https://docs.recruitee.com/reference/quickstart
+  - aid: recruitee:webhooks
+    name: Recruitee Webhooks
+    description: >-
+      Subscribe to ATS events such as candidate created, candidate stage
+      changed, offer published, evaluation created, and interview scheduled
+      to drive event-driven integrations and HRIS synchronization.
+    humanURL: https://docs.recruitee.com/reference/quickstart
+    baseURL: https://api.recruitee.com/c/{company_id}/webhook_endpoints
+    tags:
+      - Webhooks
+      - Events
+      - Integrations
+    properties:
+      - type: Documentation
+        url: https://docs.recruitee.com/reference/quickstart
+
+common:
+  - type: Website
+    url: https://recruitee.com
+  - type: Parent Company
+    url: https://tellent.com
+  - type: Documentation
+    url: https://docs.recruitee.com
+  - type: API Reference
+    url: https://docs.recruitee.com/reference/getting-started
+  - type: Help Center
+    url: https://support.recruitee.com
+  - type: Pricing
+    url: https://recruitee.com/pricing
+  - type: Sign Up
+    url: https://app.recruitee.com/#/signup
+  - type: Status
+    url: https://status.recruitee.com
+  - type: Blog
+    url: https://recruitee.com/articles
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/recruitee
+features:
+  - name: Applicant Tracking
+    description: >-
+      Kanban-style candidate pipelines per job opening with stages, tags,
+      sources, automated workflows, and collaboration notes.
+  - name: Careers Site Builder
+    description: >-
+      Drag-and-drop hosted careers site builder with custom branding, SEO,
+      and embeddable widgets for jobs on your own site.
+  - name: Sourcing Extension
+    description: >-
+      Chrome extension and source-tracking tools for adding candidates from
+      LinkedIn and other platforms directly into the ATS.
+  - name: Interview Scheduling
+    description: >-
+      Native interview scheduling with calendar integrations, automated
+      reminders, and structured evaluation scorecards.
+  - name: Reports and Analytics
+    description: >-
+      Hiring funnel reports, time-to-hire, source effectiveness, EEO/OFCCP
+      reporting, and customizable dashboards via the Reports API.
+  - name: Webhooks and Integrations
+    description: >-
+      Event webhooks and an integration marketplace covering background
+      checks, assessments, video interviews, HRIS, and job boards.
+solutions:
+  - name: Mid-Market Hiring
+    description: >-
+      End-to-end ATS for scaling teams hiring across multiple departments,
+      offices, and countries with role-based permissions.
+  - name: Multi-Location Recruitment
+    description: >-
+      Manage hiring pipelines across locations, languages, and currencies
+      from one centralized platform.
+  - name: HRIS Synchronization
+    description: >-
+      Sync hired candidates and new starters from Recruitee into HRIS,
+      payroll, and onboarding systems via the API or webhooks.
+useCases:
+  - name: ATS to HRIS Sync
+    description: >-
+      Push hired candidates from Recruitee into BambooHR, Personio, HiBob,
+      Workday, or other HRIS platforms automatically.
+  - name: Job Board Distribution
+    description: >-
+      Programmatically publish Recruitee offers to LinkedIn, Indeed, and
+      niche job boards via the careers site API.
+  - name: Custom Analytics
+    description: >-
+      Export candidate, offer, and pipeline data into a data warehouse for
+      custom hiring analytics and DEI reporting.
+integrations:
+  - name: LinkedIn Recruiter
+    description: Source candidates and post jobs to LinkedIn from Recruitee
+  - name: Indeed
+    description: Automatic job posting and apply-with-Indeed flow
+  - name: Slack
+    description: Real-time hiring notifications and feedback in Slack channels
+  - name: Google Calendar
+    description: Two-way calendar sync for interviews and scheduling
+  - name: BambooHR
+    description: Sync hired candidates into BambooHR as new employees
+  - name: HiBob
+    description: Send hired candidates from Recruitee to HiBob for onboarding
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
