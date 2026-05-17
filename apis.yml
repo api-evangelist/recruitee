@@ -87,15 +87,15 @@ common:
     url: https://tellent.com
   - type: Documentation
     url: https://docs.recruitee.com
-  - type: API Reference
+  - type: APIReference
     url: https://docs.recruitee.com/reference/getting-started
   - type: Help Center
     url: https://support.recruitee.com
   - type: Pricing
     url: https://recruitee.com/pricing
-  - type: Sign Up
+  - type: SignUp
     url: https://app.recruitee.com/#/signup
-  - type: Status
+  - type: StatusPage
     url: https://status.recruitee.com
   - type: Blog
     url: https://recruitee.com/articles
