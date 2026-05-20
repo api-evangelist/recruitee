@@ -81,6 +81,8 @@ apis:
         url: https://docs.recruitee.com/reference/quickstart
 
 common:
+  - type: GitHubOrganization
+    url: https://github.com/recruitee
   - type: Website
     url: https://recruitee.com
   - type: Parent Company
