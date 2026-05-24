@@ -103,6 +103,8 @@ common:
     url: https://recruitee.com/articles
   - type: LinkedIn
     url: https://www.linkedin.com/company/recruitee
+  - type: LLMsTxt
+    url: https://docs.recruitee.com/llms.txt
 features:
   - name: Applicant Tracking
     description: >-
