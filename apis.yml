@@ -95,7 +95,7 @@ common:
     url: https://support.recruitee.com
   - type: Pricing
     url: https://recruitee.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://app.recruitee.com/#/signup
   - type: StatusPage
     url: https://status.recruitee.com
@@ -103,7 +103,7 @@ common:
     url: https://recruitee.com/articles
   - type: LinkedIn
     url: https://www.linkedin.com/company/recruitee
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.recruitee.com/llms.txt
 features:
   - name: Applicant Tracking
