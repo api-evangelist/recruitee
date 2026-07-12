@@ -81,6 +81,10 @@ apis:
         url: https://docs.recruitee.com/reference/quickstart
 
 common:
+  - type: TrustCenter
+    url: security/recruitee-trust-center.yml
+  - type: DomainSecurity
+    url: security/recruitee-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/recruitee
   - type: Website
