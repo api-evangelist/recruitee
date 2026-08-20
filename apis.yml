@@ -84,6 +84,10 @@ apis:
     humanURL: https://docs.recruitee.com/reference/quickstart
     baseURL: https://api.recruitee.com/c/{company_id}/webhook_endpoints
     tags:
+      - Webhook
+      - Event
+      - Integration
+    tags_raw:
       - Webhooks
       - Events
       - Integrations
