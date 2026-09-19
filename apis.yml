@@ -38,6 +38,14 @@ tags:
   - Recruiting
   - ATS
   - Applicant Tracking
+  - Human Resources
+  - Hiring
+  - Careers Site
+  - Tellent
+tags_raw:
+  - Recruiting
+  - ATS
+  - Applicant Tracking
   - HR
   - Hiring
   - Careers Site
@@ -80,6 +88,10 @@ apis:
     humanURL: https://docs.recruitee.com/reference/quickstart
     baseURL: https://{company}.recruitee.com/api
     tags:
+      - Careers Site
+      - Public APIs
+      - Job Listings
+    tags_raw:
       - Careers Site
       - Public API
       - Job Listings
