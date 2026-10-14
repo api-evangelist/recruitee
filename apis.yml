@@ -1,5 +1,7 @@
 aid: recruitee
+
 name: Recruitee
+
 description: >-
   Recruitee (part of Tellent) is a collaborative applicant tracking system
   (ATS) and recruiting platform that helps growing companies build hiring
@@ -10,7 +12,9 @@ description: >-
   the path segment /c/{company_id}. Authentication uses a Bearer personal
   API token generated from Settings, Apps and plugins, Personal API tokens,
   with permissions inherited from the creator's Hiring role.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -22,6 +26,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -33,7 +38,9 @@ accessModel:
   source: []
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/recruitee.png
+
 tags:
   - Recruiting
   - Applicant Tracking
@@ -41,6 +48,7 @@ tags:
   - Hiring
   - Careers Site
   - Tellent
+
 tags_raw:
   - Recruiting
   - ATS
@@ -49,80 +57,59 @@ tags_raw:
   - Hiring
   - Careers Site
   - Tellent
+
 url: >-
   https://raw.githubusercontent.com/api-evangelist/recruitee/refs/heads/main/apis.yml
+
 created: '2026-05-11'
+
 modified: '2026-05-11'
+
 specificationVersion: '0.23'
-apis:
-  - aid: recruitee:company-api
-    name: Recruitee Company (ATS) API
-    description: >-
-      REST API for admin-side ATS operations including candidates, offers
-      (job openings), placements, departments, requisitions, tags,
-      evaluations, scheduled interviews, mailbox messages, and reports.
-      All endpoints are scoped to a company via /c/{company_id} and require
-      a Bearer personal API token in the Authorization header.
-    humanURL: https://docs.recruitee.com/reference/getting-started
-    baseURL: https://api.recruitee.com/c/{company_id}
-    tags:
-      - Applicant Tracking
-      - Recruiting
-      - REST API
-      - Bearer Token
-    tags_raw:
-      - ATS
-      - Recruiting
-      - REST API
-      - Bearer Token
-    properties:
-      - type: Documentation
-        url: https://docs.recruitee.com/reference/getting-started
-      - type: Authentication
-        url: https://support.recruitee.com/en/articles/1066282-api-documentation
-      - type: FAQ
-        url: https://support.recruitee.com/en/articles/8213076-faq-api
-  - aid: recruitee:careers-site-api
-    name: Recruitee Careers Site API
-    description: >-
-      Public, read-only API used by careers sites and embedded job widgets
-      to fetch published offers, departments, and locations for unauthenticated
-      job seekers. Backs the careers.recruitee.com hosted pages and
-      embeddable widgets.
-    humanURL: https://docs.recruitee.com/reference/quickstart
-    baseURL: https://{company}.recruitee.com/api
-    tags:
-      - Careers Site
-      - Public APIs
-      - Job Listings
-    tags_raw:
-      - Careers Site
-      - Public API
-      - Job Listings
-    properties:
-      - type: Documentation
-        url: https://docs.recruitee.com/reference/quickstart
-  - aid: recruitee:webhooks
-    name: Recruitee Webhooks
-    description: >-
-      Subscribe to ATS events such as candidate created, candidate stage
-      changed, offer published, evaluation created, and interview scheduled
-      to drive event-driven integrations and HRIS synchronization.
-    humanURL: https://docs.recruitee.com/reference/quickstart
-    baseURL: https://api.recruitee.com/c/{company_id}/webhook_endpoints
-    tags:
-      - Webhook
-      - Event
-      - Integration
-    tags_raw:
-      - Webhooks
-      - Events
-      - Integrations
-    properties:
-      - type: Documentation
-        url: https://docs.recruitee.com/reference/quickstart
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/recruitee-agentic-access.yml
+  - type: Spectral
+    url: rules/recruitee-rules.yml
+  - type: Compliance
+    url: https://recruitee.com/compliance
+  - type: ErrorCatalog
+    url: errors/recruitee-problem-types.yml
+  - type: Conformance
+    url: conformance/recruitee-conformance.yml
+  - type: LLMsTxt
+    url: llms/recruitee-llms.txt
+  - type: SecurityTxt
+    url: well-known/recruitee-support-security.txt
+  - type: SecurityTxt
+    url: well-known/recruitee-status-security.txt
+  - type: WellKnown
+    url: well-known/recruitee-well-known.yml
+  - type: Hosts
+    url: hosts/recruitee-hosts.yml
+  - type: IntegrationEdges
+    url: integrations/recruitee-integration-edges.yml
+  - type: Vendors
+    url: vendors/recruitee-vendors.yml
+  - type: SDKs
+    url: packages/recruitee-packages.yml
+  - type: Packages
+    url: packages/recruitee-packages.yml
+  - type: TermsOfService
+    url: https://recruitee.com/terms
+  - type: Support
+    url: https://support.recruitee.com/en
+  - type: PrivacyPolicy
+    url: https://recruitee.com/privacy-policy
+  - type: OAuthScopes
+    url: scopes/recruitee-scopes.yml
+  - type: Authentication
+    url: authentication/recruitee-authentication.yml
   - type: TrustCenter
     url: security/recruitee-trust-center.yml
   - type: DomainSecurity
@@ -145,12 +132,143 @@ common:
     url: https://app.recruitee.com/#/signup
   - type: StatusPage
     url: https://status.recruitee.com
-  - type: Blog
-    url: https://recruitee.com/articles
   - type: LinkedIn
     url: https://www.linkedin.com/company/recruitee
   - type: LlmsText
     url: https://docs.recruitee.com/llms.txt
+
+apis:
+- aid: recruitee:company-api
+  name: Recruitee Company (ATS) API
+  description: >-
+    REST API for admin-side ATS operations including candidates, offers (job openings), placements, departments,
+    requisitions, tags, evaluations, scheduled interviews, mailbox messages, and reports. All endpoints
+    are scoped to a company via /c/{company_id} and require a Bearer personal API token in the Authorization
+    header.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Applicant Tracking
+  - Recruiting
+  - REST API
+  - Bearer Token
+  tags_raw:
+  - ATS
+  - Recruiting
+  - REST API
+  - Bearer Token
+  properties:
+  - type: Documentation
+    url: https://docs.recruitee.com/reference/getting-started
+  - type: Authentication
+    url: https://support.recruitee.com/en/articles/1066282-api-documentation
+  - type: FAQ
+    url: https://support.recruitee.com/en/articles/8213076-faq-api
+- aid: recruitee:careers-site-api
+  name: Recruitee Careers Site API
+  description: >-
+    Public, read-only API used by careers sites and embedded job widgets to fetch published offers, departments,
+    and locations for unauthenticated job seekers. Backs the careers.recruitee.com hosted pages and embeddable
+    widgets.
+  humanURL: https://docs.recruitee.com/reference/quickstart
+  baseURL: https://{company}.recruitee.com/api
+  tags:
+  - Careers Site
+  - Public APIs
+  - Job Listings
+  tags_raw:
+  - Careers Site
+  - Public API
+  - Job Listings
+  properties:
+  - type: Documentation
+    url: https://docs.recruitee.com/reference/quickstart
+- aid: recruitee:webhooks
+  name: Recruitee Webhooks
+  description: >-
+    Subscribe to ATS events such as candidate created, candidate stage changed, offer published, evaluation
+    created, and interview scheduled to drive event-driven integrations and HRIS synchronization.
+  humanURL: https://docs.recruitee.com/reference/quickstart
+  baseURL: https://api.recruitee.com/c/{company_id}/webhook_endpoints
+  tags:
+  - Webhook
+  - Event
+  - Integration
+  tags_raw:
+  - Webhooks
+  - Events
+  - Integrations
+  properties:
+  - type: Documentation
+    url: https://docs.recruitee.com/reference/quickstart
+- aid: recruitee:recruitee-ats-api
+  name: Recruitee Ats API
+  description: The Ats API from Recruitee — 11 operation(s) for ats.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Ats
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-ats-api-openapi.yml
+- aid: recruitee:recruitee-careers-site-api
+  name: Recruitee Careers Site API
+  description: The Careers Site API from Recruitee — 3 operation(s) for careers site.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Careers Site
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-careers-site-api-openapi.yml
+- aid: recruitee:recruitee-partners-production-secret
+  name: Recruitee Partners Production Secret Openapi.Yml API
+  description: >-
+    The Partners Production Secret Openapi.Yml API from Recruitee — 1 operation(s) for partners production
+    secret openapi.yml.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Partners Production Secret Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-partners-production-secret-openapi.yml
+- aid: recruitee:recruitee-partners-release-candidate-secret
+  name: Recruitee Partners Release Candidate Secret Openapi.Yml API
+  description: >-
+    The Partners Release Candidate Secret Openapi.Yml API from Recruitee — 3 operation(s) for partners
+    release candidate secret openapi.yml.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Partners Release Candidate Secret Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-partners-release-candidate-secret-openapi.yml
+- aid: recruitee:recruitee-partners-release-candidate-token
+  name: Recruitee Partners Release Candidate Token Openapi.Yml API
+  description: >-
+    The Partners Release Candidate Token Openapi.Yml API from Recruitee — 1 operation(s) for partners
+    release candidate token openapi.yml.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Partners Release Candidate Token Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-partners-release-candidate-token-openapi.yml
+- aid: recruitee:recruitee-private-api-staging
+  name: Recruitee Private Api Staging Openapi.Yml API
+  description: >-
+    The Private Api Staging Openapi.Yml API from Recruitee — 2 operation(s) for private api staging openapi.yml.
+  humanURL: https://docs.recruitee.com/reference/getting-started
+  baseURL: https://api.recruitee.com/c/{company_id}
+  tags:
+  - Private Api Staging Openapi.Yml
+  properties:
+  - type: OpenAPI
+    url: openapi/recruitee-private-api-staging-openapi.yml
+
 features:
   - name: Applicant Tracking
     description: >-
@@ -176,6 +294,7 @@ features:
     description: >-
       Event webhooks and an integration marketplace covering background
       checks, assessments, video interviews, HRIS, and job boards.
+
 solutions:
   - name: Mid-Market Hiring
     description: >-
@@ -189,6 +308,7 @@ solutions:
     description: >-
       Sync hired candidates and new starters from Recruitee into HRIS,
       payroll, and onboarding systems via the API or webhooks.
+
 useCases:
   - name: ATS to HRIS Sync
     description: >-
@@ -202,6 +322,7 @@ useCases:
     description: >-
       Export candidate, offer, and pipeline data into a data warehouse for
       custom hiring analytics and DEI reporting.
+
 integrations:
   - name: LinkedIn Recruiter
     description: Source candidates and post jobs to LinkedIn from Recruitee
@@ -215,6 +336,9 @@ integrations:
     description: Sync hired candidates into BambooHR as new employees
   - name: HiBob
     description: Send hired candidates from Recruitee to HiBob for onboarding
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+
+x-readme-harvest:
+  date: '2026-10-14'
+  ops: 31
+  tool: harvest-readme-openapi.py
+  portal: https://docs.recruitee.com

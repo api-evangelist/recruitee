@@ -1,0 +1,24 @@
+generated: '2026-10-14'
+method: derived
+source: openapi/recruitee-ats-api-openapi.yml, openapi/recruitee-partners-production-secret-openapi.yml,
+  openapi/recruitee-partners-release-candidate-secret-openapi.yml, openapi/recruitee-partners-release-candidate-token-openapi.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+schemes:
+- name: sec0
+  type: oauth2
+  flows: []
+  sources:
+  - openapi/recruitee-ats-api-openapi.yml
+  - openapi/recruitee-partners-release-candidate-token-openapi.yml
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: RT-PARTNER-SECRET
+  sources:
+  - openapi/recruitee-partners-production-secret-openapi.yml
+  - openapi/recruitee-partners-release-candidate-secret-openapi.yml

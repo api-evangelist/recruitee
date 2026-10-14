@@ -1,0 +1,735 @@
+openapi: 3.1.0
+info:
+  title: careers-site-api
+  version: '1.0'
+servers:
+- url: https://{yourcompany}.recruitee.com/api
+  variables:
+    yourcompany:
+      default: yourcompany
+security:
+- {}
+x-readme-fauxas: true
+paths:
+  /offers/:
+    get:
+      summary: /offers/
+      description: Returns a collection of published company jobs. Offers can be filtered by department or tag.
+      operationId: offers
+      parameters:
+      - name: department
+        in: query
+        description: Filters job offers by department name
+        schema:
+          type: string
+      - name: tag
+        in: query
+        description: Filters job offers by tag name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"offers\": [\n        {\n            \"company_name\": \"Example company name\",\n            \"title\": \"Example offer 1\",\n            \"id\": 1853589,\n            \"guid\": \"vdst3\",\n            \"slug\": \"example-offer-1\",\n            \"department\": \"Example department\",\n            \"status\": \"published\",\n            \"careers_url\": \"https://subdomain.recruitee.com/o/example-offer-1\",\n            \"careers_apply_url\": \"https://subdomain.recruitee.com/o/example-offer-1/c/new\",\n            \"mailbox_email\": \"job.wefd3@subdomain.recruitee.com\",\n            \"created_at\": \"20**-09-26 10:45:33 UTC\",\n            \"published_at\": \"20**-09-26 10:46:21 UTC\",\n            \"updated_at\": \"20**-11-21 12:54:32 UTC\",\n            \"close_at\": null,\n            \"description\": \"Description text\",\n            \"requirements\": \"Requirements text\",\n            \"highlight\": \"Highlight text\",\n            \"remote\":\
+                    \ true,\n            \"on_site\": true,\n            \"hybrid\": true,\n            \"locations\": [\n                {\n                    \"id\": 171529,\n                    \"name\": \"Example location 1\",\n                    \"state\": \"Aruba\",\n                    \"country\": \"Netherlands\",\n                    \"city\": \"Amsterdam\",\n                    \"country_code\": \"NL\",\n                    \"state_code\": \"AW\",\n                    \"street\": \"Example street\",\n                    \"note\": \"Example note - location 1\",\n                    \"postal_code\": \"00-000\"\n                },\n                {\n                    \"id\": 171533,\n                    \"name\": \"Example location 2\",\n                    \"state\": \"Leinster\",\n                    \"country\": \"Ireland\",\n                    \"city\": \"Dublin\",\n                    \"country_code\": \"IE\",\n                    \"state_code\": \"L\",\n              \
+                    \      \"street\": \"Example street 2\",\n                    \"note\": \"Example note - location 2\",\n                    \"postal_code\": \"00-000\"\n                },\n                {\n                    \"id\": 171528,\n                    \"name\": \"Example location 3\",\n                    \"state\": \"Berlin\",\n                    \"country\": \"Germany\",\n                    \"city\": \"Berlin\",\n                    \"country_code\": \"DE\",\n                    \"state_code\": \"BE\",\n                    \"street\": \"Example street 3\",\n                    \"note\": \"Location note 3\",\n                    \"postal_code\": \"00-000\"\n                }\n            ],\n            \"locations_question_required\": true,\n            \"locations_question\": \"What is your preferred work location?\",\n            \"locations_question_type\": \"multiple_choice\",\n            \"location_question_visible\": true,\n            \"employment_type_code\"\
+                    : \"fulltime_permanent\",\n            \"category_code\": \"accountancy\",\n            \"experience_code\": \"experienced\",\n            \"education_code\": \"college_coursework\",\n            \"min_hours\": 35,\n            \"max_hours\": 40,\n            \"min_hours_per_week\": \"35\",\n            \"max_hours_per_week\": \"40\",\n            \"salary\": {\n                \"max\": \"1000\",\n                \"min\": \"100\",\n                \"period\": \"hour\",\n                \"currency\": \"EUR\"\n            },\n            \"options_cover_letter\": \"off\",\n            \"options_photo\": \"off\",\n            \"options_cv\": \"off\",\n            \"options_phone\": \"off\",\n            \"sharing_title\": \"Example job 1\",\n            \"sharing_image\": \"sharing_image_url\",\n            \"sharing_description\": \"Example job 1\",\n            \"cover_image\": {\n                \"url\": \"cover_image_url\"\n            },\n            \"tags\": [\n \
+                    \               \"Example tag\"\n            ]\n        },\n        {\n            \"company_name\": \"Example company name\",\n            \"title\": \"Example offer 2\",\n            \"id\": 870806,\n            \"created_at\": \"20**-01-25 16:19:38 UTC\",\n            \"published_at\": \"20**-04-07 09:07:20 UTC\",\n            \"translations\": {\n                \"de\": {\n                    \"description\": \"<p>German translation</p>\",\n                    \"title\": \"Beispieljob 1\",\n                    \"highlight\": \"<p>German translation</p>\",\n                    \"requirements\": \"<p>German translation</p>\",\n                    \"sharing_image\": \"sharing_image_url\",\n                    \"sharing_title\": \"Beispieljob 2\",\n                    \"sharing_description\": \"Beispieljob 2\",\n                    \"locations_question\": \"Was ist dein bevorzugter Arbeitsort?\"\n                }\n            },\n            \"open_questions\": [\n \
+                    \               {\n                    \"id\": 2519426,\n                    \"position\": 1,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - single line\",\n                    \"kind\": \"string\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - single line (DE)\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - single line\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2519427,\n                    \"position\": 2,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - multi line\",\n                    \"kind\": \"text\",\n  \
+                    \                  \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - multi line (DE)\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - multi line\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2519428,\n                    \"position\": 3,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - yes/no\",\n                    \"kind\": \"boolean\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - yes/no (DE)\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - yes/no\"\n        \
+                    \                }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989144,\n                    \"position\": 4,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - single choice\",\n                    \"kind\": \"single_choice\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - single choice\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - single choice\"\n                        }\n                    },\n                    \"open_question_options\": [\n                        {\n                            \"id\": 4356804,\n                            \"position\": 0,\n                            \"body\": \"Option 1\",\n         \
+                    \                   \"translations\": {\n                                \"de\": {\n                                    \"body\": \"Option 1\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 1\"\n                                }\n                            }\n                        },\n                        {\n                            \"id\": 4356805,\n                            \"position\": 1,\n                            \"body\": \"Option 2\",\n                            \"translations\": {\n                                \"de\": {\n                                    \"body\": \"Option 2\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 2\"\n                                }\n                            }\n                        }\n                    ]\n                },\n     \
+                    \           {\n                    \"id\": 2989147,\n                    \"position\": 5,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - multiple choice\",\n                    \"kind\": \"multi_choice\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - multiple choice\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - multiple choice\"\n                        }\n                    },\n                    \"open_question_options\": [\n                        {\n                            \"id\": 4356808,\n                            \"position\": 0,\n                            \"body\": \"Option 1\",\n                            \"translations\": {\n                                \"de\": {\n                               \
+                    \     \"body\": \"Option 1\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 1\"\n                                }\n                            }\n                        },\n                        {\n                            \"id\": 4356809,\n                            \"position\": 1,\n                            \"body\": \"Option 2\",\n                            \"translations\": {\n                                \"de\": {\n                                    \"body\": \"Option 2\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 2\"\n                                }\n                            }\n                        },\n                        {\n                            \"id\": 4356810,\n                            \"position\": 2,\n                            \"body\": \"Option\
+                    \ 3\",\n                            \"translations\": {\n                                \"de\": {\n                                    \"body\": \"Option 3\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 3\"\n                                }\n                            }\n                        },\n                        {\n                            \"id\": 4356811,\n                            \"position\": 3,\n                            \"body\": \"Option 4\",\n                            \"translations\": {\n                                \"de\": {\n                                    \"body\": \"Option 4\"\n                                },\n                                \"en\": {\n                                    \"body\": \"Option 4\"\n                                }\n                            }\n                        }\n                    ]\n         \
+                    \       },\n                {\n                    \"id\": 2989148,\n                    \"position\": 6,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - date\",\n                    \"kind\": \"date\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - date\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - date\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989149,\n                    \"position\": 7,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - number\",\n                    \"kind\": \"number\",\n                    \"\
+                    translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - number\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - number\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989150,\n                    \"position\": 8,\n                    \"options\": {\n                        \"currency\": \"EUR\"\n                    },\n                    \"required\": true,\n                    \"body\": \"Example question - salary\",\n                    \"kind\": \"salary\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - salary\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question\
+                    \ - salary\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989151,\n                    \"position\": 9,\n                    \"options\": {\n                        \"length\": 120\n                    },\n                    \"required\": true,\n                    \"body\": \"Example question - video\",\n                    \"kind\": \"video\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - video\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - video\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989152,\n                    \"position\": 10,\n            \
+                    \        \"options\": {},\n                    \"required\": true,\n                    \"body\": \"Example question - file\",\n                    \"kind\": \"file\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"Example question - file\"\n                        },\n                        \"en\": {\n                            \"body\": \"Example question - file\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989153,\n                    \"position\": 11,\n                    \"options\": {},\n                    \"required\": false,\n                    \"body\": \"<p>Infobox</p>\",\n                    \"kind\": \"infobox\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"<p>Infobox</p>\"\n            \
+                    \            },\n                        \"en\": {\n                            \"body\": \"<p>Infobox</p>\"\n                        }\n                    },\n                    \"open_question_options\": []\n                },\n                {\n                    \"id\": 2989154,\n                    \"position\": 12,\n                    \"options\": {},\n                    \"required\": true,\n                    \"body\": \"<p>Legal</p>\",\n                    \"kind\": \"legal\",\n                    \"translations\": {\n                        \"de\": {\n                            \"body\": \"<p>Legal</p>\"\n                        },\n                        \"en\": {\n                            \"body\": \"<p>Legal</p>\"\n                        }\n                    },\n                    \"open_question_options\": []\n                }\n            ]\n        }\n    ]\n}\n  "
+              schema:
+                type: object
+                properties:
+                  offers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        company_name:
+                          type: string
+                          example: Example company name
+                        title:
+                          type: string
+                          example: Example offer 1
+                        id:
+                          type: integer
+                          example: 1853589
+                          default: 0
+                        guid:
+                          type: string
+                          example: vdst3
+                        slug:
+                          type: string
+                          example: example-offer-1
+                        department:
+                          type: string
+                          example: Example department
+                        status:
+                          type: string
+                          example: published
+                        careers_url:
+                          type: string
+                          example: https://subdomain.recruitee.com/o/example-offer-1
+                        careers_apply_url:
+                          type: string
+                          example: https://subdomain.recruitee.com/o/example-offer-1/c/new
+                        mailbox_email:
+                          type: string
+                          example: job.wefd3@subdomain.recruitee.com
+                        created_at:
+                          type: string
+                          example: 20**-09-26 10:45:33 UTC
+                        published_at:
+                          type: string
+                          example: 20**-09-26 10:46:21 UTC
+                        updated_at:
+                          type: string
+                          example: 20**-11-21 12:54:32 UTC
+                        close_at: {}
+                        description:
+                          type: string
+                          example: Description text
+                        requirements:
+                          type: string
+                          example: Requirements text
+                        highlight:
+                          type: string
+                          example: Highlight text
+                        remote:
+                          type: boolean
+                          example: true
+                          default: true
+                        on_site:
+                          type: boolean
+                          example: true
+                          default: true
+                        hybrid:
+                          type: boolean
+                          example: true
+                          default: true
+                        locations:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 171529
+                                default: 0
+                              name:
+                                type: string
+                                example: Example location 1
+                              state:
+                                type: string
+                                example: Aruba
+                              country:
+                                type: string
+                                example: Netherlands
+                              city:
+                                type: string
+                                example: Amsterdam
+                              country_code:
+                                type: string
+                                example: NL
+                              state_code:
+                                type: string
+                                example: AW
+                              street:
+                                type: string
+                                example: Example street
+                              note:
+                                type: string
+                                example: Example note - location 1
+                              postal_code:
+                                type: string
+                                example: 00-000
+                        locations_question_required:
+                          type: boolean
+                          example: true
+                          default: true
+                        locations_question:
+                          type: string
+                          example: What is your preferred work location?
+                        locations_question_type:
+                          type: string
+                          example: multiple_choice
+                        location_question_visible:
+                          type: boolean
+                          example: true
+                          default: true
+                        employment_type_code:
+                          type: string
+                          example: fulltime_permanent
+                        category_code:
+                          type: string
+                          example: accountancy
+                        experience_code:
+                          type: string
+                          example: experienced
+                        education_code:
+                          type: string
+                          example: college_coursework
+                        min_hours:
+                          type: integer
+                          example: 35
+                          default: 0
+                        max_hours:
+                          type: integer
+                          example: 40
+                          default: 0
+                        min_hours_per_week:
+                          type: string
+                          example: '35'
+                        max_hours_per_week:
+                          type: string
+                          example: '40'
+                        salary:
+                          type: object
+                          properties:
+                            max:
+                              type: string
+                              example: '1000'
+                            min:
+                              type: string
+                              example: '100'
+                            period:
+                              type: string
+                              example: hour
+                            currency:
+                              type: string
+                              example: EUR
+                        options_cover_letter:
+                          type: string
+                          example: 'off'
+                        options_photo:
+                          type: string
+                          example: 'off'
+                        options_cv:
+                          type: string
+                          example: 'off'
+                        options_phone:
+                          type: string
+                          example: 'off'
+                        sharing_title:
+                          type: string
+                          example: Example job 1
+                        sharing_image:
+                          type: string
+                          example: sharing_image_url
+                        sharing_description:
+                          type: string
+                          example: Example job 1
+                        cover_image:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: cover_image_url
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                            example: Example tag
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"Not Found\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+      deprecated: false
+      security: []
+  /offers/{id}:
+    get:
+      summary: /offers/:id
+      description: Show detailed information about a job offer with provided ID.
+      operationId: offersid
+      parameters:
+      - name: id
+        in: path
+        description: ID or slug of an offer
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                OK:
+                  value: "{\n    \"offer\": {\n        \"id\": 487967,\n        \"slug\": \"example-offer-1\",\n        \"position\": 3,\n        \"status\": \"published\",\n        \"options_phone\": \"optional\",\n        \"options_photo\": \"off\",\n        \"options_cover_letter\": \"optional\",\n        \"options_cv\": \"required\",\n        \"remote\": true,\n        \"country_code\": \"DE\",\n        \"state_code\": \"BB\",\n        \"postal_code\": \"11-111\",\n        \"min_hours\": 20,\n        \"max_hours\": 30,\n        \"title\": \"Example offer 1\",\n        \"description\": \"<p>Example job description</p>\",\n        \"requirements\": \"<p>Example job requirements</p>\",\n        \"location\": \"Remote job\",\n        \"city\": \"Berlin\",\n        \"country\": \"Germany\",\n        \"careers_url\": \"https://democompany.recruitee.com/o/example-offer-1\",\n        \"careers_apply_url\": \"https://democompany.recruitee.com/o/example-offer-1/c/new\",\n        \"company_name\"\
+                    : \"Demo company\",\n        \"department\": \"Product\",\n        \"created_at\": \"2020-06-04 08:13:47 UTC\",\n        \"updated_at\": \"2021-08-19 14:53:19 UTC\",\n        \"published_at\": \"2020-06-04 08:13:53 UTC\",\n        \"close_at\": \"2021-10-31 22:59:59 UTC\",\n        \"employment_type_code\": \"parttime\",\n        \"category_code\": \"information_technology\",\n        \"experience_code\": \"mid_level\",\n        \"education_code\": \"master_degree\",\n        \"tags\": [\n            \"example offer tag\"\n        ],\n        \"translations\": {\n            \"de\": {\n                \"title\": null,\n                \"description\": null,\n                \"requirements\": null\n            },\n            \"en\": {\n                \"title\": \"Example offer 1\",\n                \"description\": \"<p>Example job description</p>\",\n                \"requirements\": \"<p>Example job requirements</p>\"\n            }\n        },\n        \"open_questions\"\
+                    : [\n            {\n                \"id\": 938761,\n                \"kind\": \"string\",\n                \"required\": true,\n                \"position\": 1,\n                \"body\": \"In what time you are available to start a new job?\",\n                \"translations\": {\n                    \"en\": {\n                        \"body\": \"In what time you are available to start a new job?\"\n                    }\n                },\n                \"open_question_options\": [],\n                \"options\": {\n                    \"length\": 120\n                }\n            },\n            {\n                \"id\": 938758,\n                \"kind\": \"boolean\",\n                \"required\": true,\n                \"position\": 2,\n                \"body\": \"Are you ready to work from the office?\",\n                \"translations\": {\n                    \"en\": {\n                        \"body\": \"Are you ready to work from the office?\"\n      \
+                    \              }\n                },\n                \"open_question_options\": [],\n                \"options\": {\n                    \"length\": 120\n                }\n            },\n            {\n                \"id\": 938756,\n                \"kind\": \"text\",\n                \"required\": false,\n                \"position\": 3,\n                \"body\": \"How did you find out about the job?\",\n                \"translations\": {\n                    \"en\": {\n                        \"body\": \"How did you find out about the job?\"\n                    }\n                },\n                \"open_question_options\": [],\n                \"options\": {\n                    \"length\": 120\n                }\n            }\n        ]\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  offer:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 487967
+                        default: 0
+                      slug:
+                        type: string
+                        example: example-offer-1
+                      position:
+                        type: integer
+                        example: 3
+                        default: 0
+                      status:
+                        type: string
+                        example: published
+                      options_phone:
+                        type: string
+                        example: optional
+                      options_photo:
+                        type: string
+                        example: 'off'
+                      options_cover_letter:
+                        type: string
+                        example: optional
+                      options_cv:
+                        type: string
+                        example: required
+                      remote:
+                        type: boolean
+                        example: true
+                        default: true
+                      country_code:
+                        type: string
+                        example: DE
+                      state_code:
+                        type: string
+                        example: BB
+                      postal_code:
+                        type: string
+                        example: 11-111
+                      min_hours:
+                        type: integer
+                        example: 20
+                        default: 0
+                      max_hours:
+                        type: integer
+                        example: 30
+                        default: 0
+                      title:
+                        type: string
+                        example: Example offer 1
+                      description:
+                        type: string
+                        example: <p>Example job description</p>
+                      requirements:
+                        type: string
+                        example: <p>Example job requirements</p>
+                      location:
+                        type: string
+                        example: Remote job
+                      city:
+                        type: string
+                        example: Berlin
+                      country:
+                        type: string
+                        example: Germany
+                      careers_url:
+                        type: string
+                        example: https://democompany.recruitee.com/o/example-offer-1
+                      careers_apply_url:
+                        type: string
+                        example: https://democompany.recruitee.com/o/example-offer-1/c/new
+                      company_name:
+                        type: string
+                        example: Demo company
+                      department:
+                        type: string
+                        example: Product
+                      created_at:
+                        type: string
+                        example: 2020-06-04 08:13:47 UTC
+                      updated_at:
+                        type: string
+                        example: 2021-08-19 14:53:19 UTC
+                      published_at:
+                        type: string
+                        example: 2020-06-04 08:13:53 UTC
+                      close_at:
+                        type: string
+                        example: 2021-10-31 22:59:59 UTC
+                      employment_type_code:
+                        type: string
+                        example: parttime
+                      category_code:
+                        type: string
+                        example: information_technology
+                      experience_code:
+                        type: string
+                        example: mid_level
+                      education_code:
+                        type: string
+                        example: master_degree
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: example offer tag
+                      translations:
+                        type: object
+                        properties:
+                          de:
+                            type: object
+                            properties:
+                              title: {}
+                              description: {}
+                              requirements: {}
+                          en:
+                            type: object
+                            properties:
+                              title:
+                                type: string
+                                example: Example offer 1
+                              description:
+                                type: string
+                                example: <p>Example job description</p>
+                              requirements:
+                                type: string
+                                example: <p>Example job requirements</p>
+                      open_questions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 938761
+                              default: 0
+                            kind:
+                              type: string
+                              example: string
+                            required:
+                              type: boolean
+                              example: true
+                              default: true
+                            position:
+                              type: integer
+                              example: 1
+                              default: 0
+                            body:
+                              type: string
+                              example: In what time you are available to start a new job?
+                            translations:
+                              type: object
+                              properties:
+                                en:
+                                  type: object
+                                  properties:
+                                    body:
+                                      type: string
+                                      example: In what time you are available to start a new job?
+                            open_question_options:
+                              type: array
+                            options:
+                              type: object
+                              properties:
+                                length:
+                                  type: integer
+                                  example: 120
+                                  default: 0
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"Not Found\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -X GET 'https://{yourcompany}.recruitee.com/api/offers/{id}' \
+        samples-languages:
+        - curl
+  /offers/{offer_slug}/candidates:
+    post:
+      summary: /offers/:offer_slug/candidates
+      description: 'Apply for the job offer (create candidate). By default, these fields are required: ```name```, ```phone```, ```email```, ```cv```. However, you can turn off the requirements for all of them (besides ```name``` and ```email```) in the offer''s settings for the application form.
+
+
+        API also allows answering the job’s questions. You just need to attach a list of answers to the request.'
+      operationId: offersoffer_idcandidates
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - in: path
+        name: offer_slug
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                candidate:
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    phone:
+                      type: string
+                    remote_cv_url:
+                      type: string
+                      description: Link to file saved on some external website. You can use candidate[cv] instead if you want to upload a file - see examples.
+                    referrer:
+                      type: string
+                      description: Source of candidate. Shown as candidate's 'source' in the app
+                  required:
+                  - name
+                  - email
+                  type: object
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Created (With CV upload):
+                  value: "{\n    \"candidate\": {\n        \"id\": 7928068,\n        \"name\": \"John Smith\",\n        \"emails\": [\n            \"john@example.com\"\n        ],\n        \"phones\": [\n            \"123123123\"\n        ],\n        \"created_at\": \"2019-01-08T12:09:08.000000Z\",\n        \"updated_at\": \"2019-01-08T12:09:09.000000Z\",\n        \"photo_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/normal_photo_1546949348.png\",\n        \"photo_thumb_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/thumb_photo_1546949348.png\",\n        \"cv_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/cv_1546949348.png\",\n        \"cv_pdf_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/pdf_cv_1546949348.pdf\",\n        \"open_question_answers\": []\n    }\n}"
+                Created (with remote CV):
+                  value: "{\n    \"candidate\": {\n        \"id\": 7929046,\n        \"name\": \"John Smith\",\n        \"emails\": [\n            \"john.smith@example.com\"\n        ],\n        \"phones\": [\n            \"123123123\"\n        ],\n        \"created_at\": \"2019-01-08T12:36:55.000000Z\",\n        \"updated_at\": \"2019-01-08T12:36:56.000000Z\",\n        \"photo_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/normal_photo_1546951015.png\",\n        \"photo_thumb_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/thumb_photo_1546951015.png\",\n        \"cv_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/cv_1546951015.pdf\",\n        \"cv_pdf_url\": \"https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/pdf_cv_1546951015.pdf\",\n        \"open_question_answers\": []\n    }\n}"
+              schema:
+                oneOf:
+                - title: Created (With CV upload)
+                  type: object
+                  properties:
+                    candidate:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 7928068
+                          default: 0
+                        name:
+                          type: string
+                          example: John Smith
+                        emails:
+                          type: array
+                          items:
+                            type: string
+                            example: john@example.com
+                        phones:
+                          type: array
+                          items:
+                            type: string
+                            example: '123123123'
+                        created_at:
+                          type: string
+                          example: '2019-01-08T12:09:08.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2019-01-08T12:09:09.000000Z'
+                        photo_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/normal_photo_1546949348.png
+                        photo_thumb_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/thumb_photo_1546949348.png
+                        cv_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/cv_1546949348.png
+                        cv_pdf_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7928068/pdf_cv_1546949348.pdf
+                        open_question_answers:
+                          type: array
+                - title: Created (with remote CV)
+                  type: object
+                  properties:
+                    candidate:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 7929046
+                          default: 0
+                        name:
+                          type: string
+                          example: John Smith
+                        emails:
+                          type: array
+                          items:
+                            type: string
+                            example: john.smith@example.com
+                        phones:
+                          type: array
+                          items:
+                            type: string
+                            example: '123123123'
+                        created_at:
+                          type: string
+                          example: '2019-01-08T12:36:55.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2019-01-08T12:36:56.000000Z'
+                        photo_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/normal_photo_1546951015.png
+                        photo_thumb_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/thumb_photo_1546951015.png
+                        cv_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/cv_1546951015.pdf
+                        cv_pdf_url:
+                          type: string
+                          example: https://recruitee.s3.eu-central-1.amazonaws.com/candidates/7929046/pdf_cv_1546951015.pdf
+                        open_question_answers:
+                          type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"error\": [\n        \"Name can't be blank\",\n        \"Email can't be blank\",\n        \"Email is invalid\",\n        \"Cv can't be blank\",\n        \"Phone can't be blank\"\n    ],\n    \"error_fields\": {\n        \"name\": [\n            \"can't be blank\"\n        ],\n        \"email\": [\n            \"can't be blank\",\n            \"is invalid\"\n        ],\n        \"cv\": [\n            \"can't be blank\"\n        ],\n        \"phone\": [\n            \"can't be blank\"\n        ]\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: array
+                    items:
+                      type: string
+                      example: Name can't be blank
+                  error_fields:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        items:
+                          type: string
+                          example: can't be blank
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: can't be blank
+                      cv:
+                        type: array
+                        items:
+                          type: string
+                          example: can't be blank
+                      phone:
+                        type: array
+                        items:
+                          type: string
+                          example: can't be blank
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST 'https://{yourcompany}.recruitee.com/api/offers/{offer_slug}/candidates' \\\n  -H 'content-type: multipart/form-data' \\\n  -F 'candidate[name]=John Smith' \\\n  -F 'candidate[email]=john@example.com' \\\n  -F 'candidate[phone]=123123123' \\\n  -F 'candidate[photo]=@/path/to/photo.jpg' \\\n  -F 'candidate[cover_letter]=Example cover letter' \\\n  -F 'candidate[cv]=@/path/to/cv.pdf'"
+          name: With CV upload (form-data)
+        - language: curl
+          code: "curl -X POST 'https://{yourcompany}.recruitee.com/api/offers/{offer_slug}/candidates'\\\n  -H 'content-type: application/json' \\\n  -d '{\n  \"candidate\": {\n    \"name\": \"John Smith\",\n    \"email\": \"john.smith@example.com\",\n    \"phone\": \"123123123\",\n    \"cover_letter\": \"Example cover letter\",\n    \"remote_photo_url\": \"https://site.example.com/images/myimage.jpeg\",\n    \"remote_cv_url\": \"https://example.com/CV.pdf\",\n    \"open_question_answers_attributes\": [\n      {\n        \"open_question_id\": 5,\n        \"content\": \"Yes\"\n      },\n      {\n        \"open_question_id\": 8,\n        \"content\": \"Responsibility\"\n      },\n      {\n        \"open_question_id\": 9,\n        \"content\": \"Blue\"\n      },\n      {\n        \"open_question_id\": 10,\n        \"multi_content\": [\"Pizza\", \"Hamburger\"]\n      },\n      {\n        \"open_question_id\": 11,\n        \"remote_file_url\": \"https://site.example.com/files/additional_file.jpg\"\
+            \n      }\n    ]\n  }\n}'"
+          name: With remote CV link
+        - language: curl
+          code: 'curl -X POST ''https://{yourcompany}.recruitee.com/api/offers/{offer_slug}/candidates'' \
+
+            -H ''content-type: multipart/form-data'' \
+
+            -F ''candidate[name]=Jane Doe'' \
+
+            -F ''candidate[email]=jane@example.com'' \
+
+            -F ''candidate[cover_letter]=Example cover letter'' \
+
+            -F ''candidate[cv]=@/path/to/cv.pdf'' \
+
+            -F ''candidate[open_question_answers_attributes][0][open_question_id]=941744'' \
+
+            -F ''candidate[open_question_answers_attributes][0][content]=Example answer - text (single line) type'' \
+
+            -F ''candidate[open_question_answers_attributes][1][open_question_id]=941745'' \
+
+            -F ''candidate[open_question_answers_attributes][1][content]=Example answer - text (multiple lines) type'' \
+
+            -F ''candidate[open_question_answers_attributes][2][open_question_id]=941746'' \
+
+            -F ''candidate[open_question_answers_attributes][2][flag]=true'' \
+
+            -F ''candidate[open_question_answers_attributes][3][open_question_id]=941747'' \
+
+            -F ''candidate[open_question_answers_attributes][3][content]=Example answer - single choice type'' \
+
+            -F ''candidate[open_question_answers_attributes][4][open_question_id]=941751'' \
+
+            -F ''candidate[open_question_answers_attributes][4][multi_content][]=First answer - multiple choice type'' \
+
+            -F ''candidate[open_question_answers_attributes][4][multi_content][]=Second answer - multiple choice type'' \
+
+            -F ''candidate[open_question_answers_attributes][6][open_question_id]=941753'' \
+
+            -F ''candidate[open_question_answers_attributes][6][file]=@/path/to/file.jpg'' \
+
+            -F ''candidate[open_question_answers_attributes][7][open_question_id]=941754'' \
+
+            -F ''candidate[open_question_answers_attributes][7][flag]=true'''
+          name: With screening questions
+        samples-languages:
+        - curl
+x-provenance:
+  method: searched
+  source: https://docs.recruitee.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://docs.recruitee.com/reference/offers.md
+  - https://docs.recruitee.com/reference/offersid.md
+  - https://docs.recruitee.com/reference/offersoffer_idcandidates.md
+  merge:
+    pages: 3
+    deduped: 0
+    conflicts_kept_first: 0

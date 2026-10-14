@@ -1,0 +1,11 @@
+generated: '2026-10-14'
+method: derived
+source: openapi/recruitee-ats-api-openapi.yml, openapi/recruitee-partners-release-candidate-token-openapi.yml
+schemes:
+- name: sec0
+  source: openapi/recruitee-ats-api-openapi.yml
+  flows: []
+- name: sec0
+  source: openapi/recruitee-partners-release-candidate-token-openapi.yml
+  flows: []
+scopes: []
