@@ -1,0 +1,277 @@
+openapi: 3.2.0
+info:
+  title: recruitee-private-api-staging I API
+  version: '1.0'
+servers:
+- url: https://api.s.recruitee.com
+security:
+- {}
+tags:
+- name: I
+paths:
+  /i/p/{partner}/analytics:
+    post:
+      summary: /analytics
+      description: ''
+      operationId: analytics
+      parameters:
+      - name: partner
+        in: path
+        description: Partner name, e.g. `acme`.
+        schema:
+          type: string
+          default: acme
+        required: true
+      - name: secret
+        in: query
+        description: Secret shared between Recruitee, and the partner.
+        schema:
+          type: string
+          default: UmHJHy4xpN2ziQLv
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                utm_campaigns:
+                  type: array
+                  description: List of campaigns to receive analytics for.
+                  default:
+                  - '123'
+                  - '124'
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"123\": {\n    \"active\": {\n      \"apply\": 1,\n        \"evaluation\": 0,\n        \"hire\": 0,\n        \"interview\": 0,\n        \"none\": 0,\n        \"offer\": 0,\n        \"phone_screen\": 0\n    },\n    \"disqualified\": {\n      \"apply\": 0,\n      \"evaluation\": 0,\n      \"hire\": 0,\n      \"interview\": 0,\n      \"none\": 0,\n      \"offer\": 0,\n      \"phone_screen\": 0\n    },\n    \"unique_visits\": 1,\n    \"visits\": 1\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  '123':
+                    type: object
+                    properties:
+                      active:
+                        type: object
+                        properties:
+                          apply:
+                            type: integer
+                            example: 1
+                            default: 0
+                          evaluation:
+                            type: integer
+                            example: 0
+                            default: 0
+                          hire:
+                            type: integer
+                            example: 0
+                            default: 0
+                          interview:
+                            type: integer
+                            example: 0
+                            default: 0
+                          none:
+                            type: integer
+                            example: 0
+                            default: 0
+                          offer:
+                            type: integer
+                            example: 0
+                            default: 0
+                          phone_screen:
+                            type: integer
+                            example: 0
+                            default: 0
+                      disqualified:
+                        type: object
+                        properties:
+                          apply:
+                            type: integer
+                            example: 0
+                            default: 0
+                          evaluation:
+                            type: integer
+                            example: 0
+                            default: 0
+                          hire:
+                            type: integer
+                            example: 0
+                            default: 0
+                          interview:
+                            type: integer
+                            example: 0
+                            default: 0
+                          none:
+                            type: integer
+                            example: 0
+                            default: 0
+                          offer:
+                            type: integer
+                            example: 0
+                            default: 0
+                          phone_screen:
+                            type: integer
+                            example: 0
+                            default: 0
+                      unique_visits:
+                        type: integer
+                        example: 1
+                        default: 0
+                      visits:
+                        type: integer
+                        example: 1
+                        default: 0
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\":[\n    {\n      \"code\":\"unauthorized\",\n      \"data\":{},\n      \"message\":\"Unauthorized\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthorized
+                        data:
+                          type: object
+                          properties: {}
+                        message:
+                          type: string
+                          example: Unauthorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"error\": [\n    \"Invalid params\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: array
+                    items:
+                      type: string
+                      example: Invalid params
+      deprecated: false
+      security: []
+      tags:
+      - I
+  /i/p/{partner}/timeline:
+    get:
+      summary: /timeline
+      description: ''
+      operationId: timeline
+      parameters:
+      - name: partner
+        in: path
+        description: Partner name, e.g. `acme`.
+        schema:
+          type: string
+          default: acme
+        required: true
+      - name: secret
+        in: query
+        description: Secret shared between Recruitee, and the partner.
+        schema:
+          type: string
+          default: UmHJHy4xpN2ziQLv
+      - name: since
+        in: query
+        description: Last sync date time in ISO8601 format. Max 7 days ago.
+        schema:
+          type: string
+          format: date
+          default: '2020-11-02T12:00:00Z'
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: 'candidate_id,utm_campaign,stage,timestamp
+
+                    966236,123,apply,2020-11-02T13:41:05Z
+
+                    966236,123,phone_screen,2020-11-02T14:06:03Z
+
+                    966236,123,interview,2020-11-02T14:06:06Z
+
+                    966236,123,evaluation,2020-11-02T14:06:09Z
+
+                    966236,123,disqualified,2020-11-02T14:06:24Z'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"errors\":[\n    {\n      \"code\":\"unauthorized\",\n      \"data\":{},\n      \"message\":\"Unauthorized\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: unauthorized
+                        data:
+                          type: object
+                          properties: {}
+                        message:
+                          type: string
+                          example: Unauthorized
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"error\": [\n    \"Invalid params\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: array
+                    items:
+                      type: string
+                      example: Invalid params
+      deprecated: false
+      security: []
+      tags:
+      - I
+x-readme-fauxas: true
+x-provenance:
+  method: searched
+  source: https://docs.recruitee.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://docs.recruitee.com/reference/analytics.md
+  - https://docs.recruitee.com/reference/timeline.md
+  merge:
+    pages: 2
+    deduped: 0
+    conflicts_kept_first: 0

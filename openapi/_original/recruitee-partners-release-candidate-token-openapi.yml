@@ -1,0 +1,440 @@
+# x-archived-from: recruitee-partners-release-candidate-token-openapi.yml
+# x-archived-on: 2026-10-17
+openapi: 3.1.0
+info:
+  title: partners-release-candidate-token
+  version: '1.0'
+servers:
+- url: https://integrations.rc.recruitee.dev/api
+security:
+- sec0: []
+x-readme-fauxas: true
+paths:
+  /p/{codename}/c/{company_id}/partner:
+    post:
+      summary: /partner
+      description: ''
+      operationId: post-partner
+      parameters:
+      - name: codename
+        in: path
+        description: Partner's codename. For example Recruitee's codename would be `recruitee`. Accepts only lowercase letters and dashes. Globally unique and treated as your primary key.
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        description: Your staging company ID
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - kind
+              - name
+              properties:
+                kind:
+                  type: string
+                  enum:
+                  - ''
+                  - assessment
+                  - background_check
+                  - reference_check
+                name:
+                  type: string
+                description:
+                  type: string
+                logo_svg:
+                  type: string
+                  description: 'SVG logo with square `viewbox` with no `width` and `height`. For example: ✅  `<svg viewbox="0 0 18 18">` ❌  `<svg width="18" height="18">`'
+                urls:
+                  type: object
+                  properties:
+                    validate_token:
+                      type: string
+                    tests:
+                      type: string
+                    send_candidate:
+                      type: string
+                    help_article:
+                      type: string
+                inputs:
+                  type: array
+                  items:
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                        - ''
+                        - first_name
+                        - last_name
+                        - email
+                        - phone
+                        - admin
+                        - offer
+                      name:
+                        type: string
+                        description: Not accepted for `admin` and `offer` input kinds, otherwise required.
+                      required:
+                        type: boolean
+                        default: true
+                    required:
+                    - kind
+                    - required
+                    type: object
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": null,\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": null,\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": null,\n      \"send_candidate\": null,\n      \"tests\": null,\n      \"validate_token\": null\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  partner:
+                    type: object
+                    properties:
+                      admin_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      codename:
+                        type: string
+                        example: best-assessments
+                      company_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      description: {}
+                      inputs:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                              example: first_name
+                            name:
+                              type: string
+                              example: first_name
+                            required:
+                              type: boolean
+                              example: true
+                              default: true
+                      kind:
+                        type: string
+                        example: assessment
+                      logo_svg: {}
+                      name:
+                        type: string
+                        example: Best Assessments
+                      options:
+                        type: object
+                        properties: {}
+                      promoted:
+                        type: boolean
+                        example: false
+                        default: true
+                      secret:
+                        type: string
+                        example: ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k
+                      urls:
+                        type: object
+                        properties:
+                          help_article: {}
+                          send_candidate: {}
+                          tests: {}
+                          validate_token: {}
+      deprecated: false
+    patch:
+      summary: /partner
+      description: ''
+      operationId: patch-partner
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  default: Best Assessments
+                description:
+                  type: string
+                  default: Assessments you need & deserve.
+                logo_svg:
+                  type: string
+                  default: <svg viewbox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">  <g>   <rect stroke-width="0" id="svg_2" height="18" width="18" y="0" x="0" opacity="undefined" stroke="#000" fill="#0fffff"/>   <path id="svg_4" d="m-24.12498,-31.37497l-5.5,33.87497" opacity="NaN" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" stroke="#000" fill="#ffffff"/>   <ellipse stroke-width="2" ry="5.125" rx="5.125" id="svg_5" cy="9" cx="9" opacity="undefined" stroke="#ff00d4" fill="#ffffff"/>  </g> </svg>
+                urls:
+                  type: object
+                  properties:
+                    validate_token:
+                      type: string
+                      default: https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net
+                    tests:
+                      type: string
+                      default: https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net
+                    send_candidate:
+                      type: string
+                      default: https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net
+                    help_article:
+                      type: string
+                      default: https://support.recruitee.com/en/articles/4194849-harver-integration
+                inputs:
+                  type: array
+                  items:
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                        - ''
+                        - first_name
+                        - last_name
+                        - email
+                        - phone
+                        - admin
+                        - offer
+                      name:
+                        type: string
+                        description: Not accepted for `admin` and `offer` input kinds, otherwise required.
+                      required:
+                        type: boolean
+                        default: true
+                    required:
+                    - kind
+                    - required
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\
+                    \"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  partner:
+                    type: object
+                    properties:
+                      admin_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      codename:
+                        type: string
+                        example: best-assessments
+                      company_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      description:
+                        type: string
+                        example: Assessments you need & deserve.
+                      inputs:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                              example: first_name
+                            name:
+                              type: string
+                              example: first_name
+                            required:
+                              type: boolean
+                              example: true
+                              default: true
+                      kind:
+                        type: string
+                        example: assessment
+                      logo_svg:
+                        type: string
+                        example: "<svg viewbox=\"0 0 18 18\" xmlns=\"http://www.w3.org/2000/svg\">\n <g>\n  <rect stroke-width=\"0\" id=\"svg_2\" height=\"18\" width=\"18\" y=\"0\" x=\"0\" opacity=\"undefined\" stroke=\"#000\" fill=\"#0fffff\"/>\n  <path id=\"svg_4\" d=\"m-24.12498,-31.37497l-5.5,33.87497\" opacity=\"NaN\" fill-opacity=\"null\" stroke-opacity=\"null\" stroke-dasharray=\"null\" stroke-width=\"0\" stroke=\"#000\" fill=\"#ffffff\"/>\n  <ellipse stroke-width=\"2\" ry=\"5.125\" rx=\"5.125\" id=\"svg_5\" cy=\"9\" cx=\"9\" opacity=\"undefined\" stroke=\"#ff00d4\" fill=\"#ffffff\"/>\n </g>\n</svg>"
+                      name:
+                        type: string
+                        example: Best Assessments
+                      options:
+                        type: object
+                        properties: {}
+                      promoted:
+                        type: boolean
+                        example: false
+                        default: true
+                      secret:
+                        type: string
+                        example: ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k
+                      urls:
+                        type: object
+                        properties:
+                          help_article:
+                            type: string
+                            example: https://support.recruitee.com/en/articles/4194849-harver-integration
+                          send_candidate:
+                            type: string
+                            example: https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net
+                          tests:
+                            type: string
+                            example: https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net
+                          validate_token:
+                            type: string
+                            example: https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net
+      deprecated: false
+    get:
+      summary: /partner
+      description: ''
+      operationId: get-partner
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\
+                    \"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  partner:
+                    type: object
+                    properties:
+                      admin_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      codename:
+                        type: string
+                        example: best-assessments
+                      company_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      description:
+                        type: string
+                        example: Assessments you need & deserve.
+                      inputs:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            kind:
+                              type: string
+                              example: first_name
+                            name:
+                              type: string
+                              example: first_name
+                            required:
+                              type: boolean
+                              example: true
+                              default: true
+                      kind:
+                        type: string
+                        example: assessment
+                      logo_svg:
+                        type: string
+                        example: "<svg viewbox=\"0 0 18 18\" xmlns=\"http://www.w3.org/2000/svg\">\n <g>\n  <rect stroke-width=\"0\" id=\"svg_2\" height=\"18\" width=\"18\" y=\"0\" x=\"0\" opacity=\"undefined\" stroke=\"#000\" fill=\"#0fffff\"/>\n  <path id=\"svg_4\" d=\"m-24.12498,-31.37497l-5.5,33.87497\" opacity=\"NaN\" fill-opacity=\"null\" stroke-opacity=\"null\" stroke-dasharray=\"null\" stroke-width=\"0\" stroke=\"#000\" fill=\"#ffffff\"/>\n  <ellipse stroke-width=\"2\" ry=\"5.125\" rx=\"5.125\" id=\"svg_5\" cy=\"9\" cx=\"9\" opacity=\"undefined\" stroke=\"#ff00d4\" fill=\"#ffffff\"/>\n </g>\n</svg>"
+                      name:
+                        type: string
+                        example: Best Assessments
+                      options:
+                        type: object
+                        properties: {}
+                      promoted:
+                        type: boolean
+                        example: false
+                        default: true
+                      secret:
+                        type: string
+                        example: ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k
+                      urls:
+                        type: object
+                        properties:
+                          help_article:
+                            type: string
+                            example: https://support.recruitee.com/en/articles/4194849-harver-integration
+                          send_candidate:
+                            type: string
+                            example: https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net
+                          tests:
+                            type: string
+                            example: https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net
+                          validate_token:
+                            type: string
+                            example: https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net
+      deprecated: false
+    delete:
+      summary: /partner
+      description: ''
+      operationId: delete-partner
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+      deprecated: false
+components:
+  securitySchemes:
+    sec0:
+      type: oauth2
+      flows: {}
+x-provenance:
+  method: searched
+  source: https://docs.recruitee.com/reference
+  harvested: '2026-10-14'
+  tool: harvest-readme-openapi.py
+  note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
+  assembled_from:
+  - https://docs.recruitee.com/reference/delete-partner.md
+  - https://docs.recruitee.com/reference/get-partner.md
+  - https://docs.recruitee.com/reference/patch-partner.md
+  - https://docs.recruitee.com/reference/post-partner.md
+  merge:
+    pages: 4
+    deduped: 3
+    conflicts_kept_first: 0

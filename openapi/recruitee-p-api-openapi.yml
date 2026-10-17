@@ -1,13 +1,362 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: partners-release-candidate-token
+  title: Recruitee P API
   version: '1.0'
+  description: 'Operations tagged P across 3 of this provider''s published API definitions: recruitee-partners-production-secret-openapi.yml, recruitee-partners-release-candidate-secret-openapi.yml, recruitee-partners-release-candidate-token-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
+- url: https://integrations.recruitee.com/api
 - url: https://integrations.rc.recruitee.dev/api
 security:
 - sec0: []
-x-readme-fauxas: true
+tags:
+- name: P
 paths:
+  /p/{codename}/partner/regenerate-secret:
+    post:
+      summary: /partner/regenerate-secret
+      description: ''
+      operationId: post-partner-regenerate-secret
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"secret\": \"SFVSHA1VFeYC1Wtd65wWhH8Rgh3l4588\"\n}"
+              schema:
+                type: object
+                properties:
+                  secret:
+                    type: string
+                    example: SFVSHA1VFeYC1Wtd65wWhH8Rgh3l4588
+      deprecated: false
+      tags:
+      - P
+    servers:
+    - url: https://integrations.recruitee.com/api
+  /p/{codename}/c/{company_id}/candidates/{candidate_id}/reports:
+    get:
+      summary: /candidates/:id/reports
+      description: ''
+      operationId: get-candidate-reports
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: candidate_id
+        in: path
+        schema:
+          type: string
+        required: true
+      deprecated: false
+      tags:
+      - P
+    servers:
+    - url: https://integrations.rc.recruitee.dev/api
+  /p/{codename}/c/{company_id}/reports:
+    post:
+      summary: /reports
+      description: ''
+      operationId: post-reports
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: company_id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - test_id
+              - test_name
+              - candidate_id
+              - status
+              - sent_at
+              properties:
+                test_id:
+                  type: string
+                test_name:
+                  type: string
+                candidate_id:
+                  type: integer
+                  format: int32
+                status:
+                  type: string
+                  default: completed
+                  enum:
+                  - sent
+                  - completed
+                  - failed
+                  - canceled
+                sent_at:
+                  type: string
+                  format: date
+                score:
+                  type: string
+                completed_at:
+                  type: string
+                  format: date
+                subtitle:
+                  type: string
+                properties:
+                  type: array
+                  items:
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                    - key
+                    - value
+                    type: object
+                urls:
+                  type: object
+                  properties:
+                    open:
+                      type: string
+                    download_pdf:
+                      type: string
+                    cancel_invitation:
+                      type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"report\": {\n    \"candidate_id\": 1,\n    \"company_id\": 1,\n    \"completed_at\": null,\n    \"id\": \"ff96b40f-8f11-4155-b059-e3d25e149bfa\",\n    \"properties\": [],\n    \"score\": null,\n    \"sent_at\": \"2021-02-25T10:58:29Z\",\n    \"sent_by_admin\": null,\n    \"sent_by_admin_id\": null,\n    \"status\": \"sent\",\n    \"subtitle\": null,\n    \"test_id\": \"1\",\n    \"test_name\": \"JavaScript\",\n    \"urls\": {\n      \"open\": null\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  report:
+                    type: object
+                    properties:
+                      candidate_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      company_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      completed_at: {}
+                      id:
+                        type: string
+                        example: ff96b40f-8f11-4155-b059-e3d25e149bfa
+                      properties:
+                        type: array
+                      score: {}
+                      sent_at:
+                        type: string
+                        example: '2021-02-25T10:58:29Z'
+                      sent_by_admin: {}
+                      sent_by_admin_id: {}
+                      status:
+                        type: string
+                        example: sent
+                      subtitle: {}
+                      test_id:
+                        type: string
+                        example: '1'
+                      test_name:
+                        type: string
+                        example: JavaScript
+                      urls:
+                        type: object
+                        properties:
+                          open: {}
+      deprecated: false
+      tags:
+      - P
+    servers:
+    - url: https://integrations.rc.recruitee.dev/api
+  /p/{codename}/reports/{report_id}:
+    patch:
+      summary: /reports
+      description: ''
+      operationId: patch-reports
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: report_id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  default: completed
+                  enum:
+                  - sent
+                  - completed
+                  - failed
+                  - canceled
+                score:
+                  type: string
+                  description: 'Examples: `"10"`, `"10%"`, `"10/20"`. Strings with more than 5 characters will not be shown in the badge.'
+                  default: 50%
+                completed_at:
+                  type: string
+                  default: '2021-02-24T14:00:00Z'
+                  format: date
+                subtitle:
+                  type: string
+                  default: TypeScript
+                properties:
+                  type: array
+                  items:
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                    required:
+                    - key
+                    - value
+                    type: object
+                urls:
+                  type: object
+                  properties:
+                    open:
+                      type: string
+                    download_pdf:
+                      type: string
+                    cancel_invitation:
+                      type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"report\": {\n    \"candidate_id\": 1,\n    \"company_id\": 1,\n    \"completed_at\": \"2021-02-24T14:00:00Z\",\n    \"id\": \"ff96b40f-8f11-4155-b059-e3d25e149bfa\",\n    \"properties\": [\n      {\n        \"key\": \"Distinguishing feature\",\n        \"value\": \"Strong culture fit\"\n      },\n      {\n        \"key\": \"Agility\",\n        \"value\": \"10\"\n      }\n    ],\n    \"score\": \"50%\",\n    \"sent_at\": \"2021-02-25T10:58:29Z\",\n    \"sent_by_admin\": {\n      \"first_name\": \"Richard\",\n      \"id\": 1,\n      \"last_name\": \"Stark\"\n    },\n    \"sent_by_admin_id\": 1,\n    \"status\": \"completed\",\n    \"subtitle\": \"TypeScript\",\n    \"test_id\": \"1\",\n    \"test_name\": \"JavaScript\",\n    \"urls\": {\n      \"open\": null\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  report:
+                    type: object
+                    properties:
+                      candidate_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      company_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      completed_at:
+                        type: string
+                        example: '2021-02-24T14:00:00Z'
+                      id:
+                        type: string
+                        example: ff96b40f-8f11-4155-b059-e3d25e149bfa
+                      properties:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                              example: Distinguishing feature
+                            value:
+                              type: string
+                              example: Strong culture fit
+                      score:
+                        type: string
+                        example: 50%
+                      sent_at:
+                        type: string
+                        example: '2021-02-25T10:58:29Z'
+                      sent_by_admin:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+                            example: Richard
+                          id:
+                            type: integer
+                            example: 1
+                            default: 0
+                          last_name:
+                            type: string
+                            example: Stark
+                      sent_by_admin_id:
+                        type: integer
+                        example: 1
+                        default: 0
+                      status:
+                        type: string
+                        example: completed
+                      subtitle:
+                        type: string
+                        example: TypeScript
+                      test_id:
+                        type: string
+                        example: '1'
+                      test_name:
+                        type: string
+                        example: JavaScript
+                      urls:
+                        type: object
+                        properties:
+                          open: {}
+      deprecated: false
+      tags:
+      - P
+    delete:
+      summary: /reports
+      description: ''
+      operationId: delete-reports
+      parameters:
+      - name: codename
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: report_id
+        in: path
+        schema:
+          type: string
+        required: true
+      deprecated: false
+      tags:
+      - P
+    servers:
+    - url: https://integrations.rc.recruitee.dev/api
   /p/{codename}/c/{company_id}/partner:
     post:
       summary: /partner
@@ -150,6 +499,8 @@ paths:
                           tests: {}
                           validate_token: {}
       deprecated: false
+      tags:
+      - P
     patch:
       summary: /partner
       description: ''
@@ -226,8 +577,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\
-                    \"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
+                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -298,6 +648,8 @@ paths:
                             type: string
                             example: https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net
       deprecated: false
+      tags:
+      - P
     get:
       summary: /partner
       description: ''
@@ -320,8 +672,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\
-                    \"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
+                  value: "{\n  \"partner\": {\n    \"admin_id\": 1,\n    \"codename\": \"best-assessments\",\n    \"company_id\": 1,\n    \"description\": \"Assessments you need & deserve.\",\n    \"inputs\": [\n      {\n        \"kind\": \"first_name\",\n        \"name\": \"first_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"last_name\",\n        \"name\": \"last_name\",\n        \"required\": true\n      },\n      {\n        \"kind\": \"email\",\n        \"name\": \"email\",\n        \"required\": true\n      }\n    ],\n    \"kind\": \"assessment\",\n    \"logo_svg\": \"<svg viewbox=\\\"0 0 18 18\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\">\\n <g>\\n  <rect stroke-width=\\\"0\\\" id=\\\"svg_2\\\" height=\\\"18\\\" width=\\\"18\\\" y=\\\"0\\\" x=\\\"0\\\" opacity=\\\"undefined\\\" stroke=\\\"#000\\\" fill=\\\"#0fffff\\\"/>\\n  <path id=\\\"svg_4\\\" d=\\\"m-24.12498,-31.37497l-5.5,33.87497\\\" opacity=\\\"NaN\\\" fill-opacity=\\\"null\\\" stroke-opacity=\\\"null\\\" stroke-dasharray=\\\"null\\\" stroke-width=\\\"0\\\" stroke=\\\"#000\\\" fill=\\\"#ffffff\\\"/>\\n  <ellipse stroke-width=\\\"2\\\" ry=\\\"5.125\\\" rx=\\\"5.125\\\" id=\\\"svg_5\\\" cy=\\\"9\\\" cx=\\\"9\\\" opacity=\\\"undefined\\\" stroke=\\\"#ff00d4\\\" fill=\\\"#ffffff\\\"/>\\n </g>\\n</svg>\",\n    \"name\": \"Best Assessments\",\n    \"options\": {},\n    \"promoted\": false,\n    \"secret\": \"ODMsbP845aGKlwOV6v1kHAUEgOfdDM6k\",\n    \"urls\": {\n      \"help_article\": \"https://support.recruitee.com/en/articles/4194849-harver-integration\",\n      \"send_candidate\": \"https://44c576c0fcabcf04b41673900b795b1b.m.pipedream.net\",\n      \"tests\": \"https://1da22d5d35232651e170c77e943d5a68.m.pipedream.net\",\n      \"validate_token\": \"https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net\"\n    }\n  }\n}"
               schema:
                 type: object
                 properties:
@@ -392,6 +743,8 @@ paths:
                             type: string
                             example: https://c9d2c92dc329471696e8a6b670ea7c2b.m.pipedream.net
       deprecated: false
+      tags:
+      - P
     delete:
       summary: /partner
       description: ''
@@ -416,11 +769,21 @@ paths:
                 Result:
                   value: ''
       deprecated: false
+      tags:
+      - P
+    servers:
+    - url: https://integrations.rc.recruitee.dev/api
 components:
   securitySchemes:
     sec0:
-      type: oauth2
-      flows: {}
+      type: apiKey
+      in: header
+      name: RT-PARTNER-SECRET
+x-refined-from:
+- recruitee-partners-production-secret-openapi.yml
+- recruitee-partners-release-candidate-secret-openapi.yml
+- recruitee-partners-release-candidate-token-openapi.yml
+x-readme-fauxas: true
 x-provenance:
   method: searched
   source: https://docs.recruitee.com/reference
@@ -428,11 +791,8 @@ x-provenance:
   tool: harvest-readme-openapi.py
   note: Assembled verbatim from the OpenAPI definition ReadMe embeds in each operation page of the provider's developer portal; paths and components merged by API title, nothing authored.
   assembled_from:
-  - https://docs.recruitee.com/reference/delete-partner.md
-  - https://docs.recruitee.com/reference/get-partner.md
-  - https://docs.recruitee.com/reference/patch-partner.md
-  - https://docs.recruitee.com/reference/post-partner.md
+  - https://docs.recruitee.com/reference/post-partner-regenerate-secret.md
   merge:
-    pages: 4
-    deduped: 3
+    pages: 1
+    deduped: 0
     conflicts_kept_first: 0

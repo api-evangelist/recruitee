@@ -201,74 +201,46 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.recruitee.com/reference/quickstart
-- aid: recruitee:recruitee-ats-api
-  name: Recruitee Ats API
-  description: The Ats API from Recruitee — 11 operation(s) for ats.
+- aid: recruitee:recruitee-c-api
+  name: Recruitee C API
+  description: The C API from Recruitee — 11 operation(s) for c.
   humanURL: https://docs.recruitee.com/reference/getting-started
   baseURL: https://api.recruitee.com/c/{company_id}
   tags:
-  - Ats
+  - C
   properties:
   - type: OpenAPI
-    url: openapi/recruitee-ats-api-openapi.yml
-- aid: recruitee:recruitee-careers-site-api
-  name: Recruitee Careers Site API
-  description: The Careers Site API from Recruitee — 3 operation(s) for careers site.
+    url: openapi/recruitee-c-api-openapi.yml
+- aid: recruitee:recruitee-i-api
+  name: Recruitee I API
+  description: The I API from Recruitee — 2 operation(s) for i.
   humanURL: https://docs.recruitee.com/reference/getting-started
   baseURL: https://api.recruitee.com/c/{company_id}
   tags:
-  - Careers Site
+  - I
   properties:
   - type: OpenAPI
-    url: openapi/recruitee-careers-site-api-openapi.yml
-- aid: recruitee:recruitee-partners-production-secret
-  name: Recruitee Partners Production Secret Openapi.Yml API
-  description: >-
-    The Partners Production Secret Openapi.Yml API from Recruitee — 1 operation(s) for partners production
-    secret openapi.yml.
+    url: openapi/recruitee-i-api-openapi.yml
+- aid: recruitee:recruitee-offers-api
+  name: Recruitee Offers API
+  description: The Offers API from Recruitee — 3 operation(s) for offers.
   humanURL: https://docs.recruitee.com/reference/getting-started
   baseURL: https://api.recruitee.com/c/{company_id}
   tags:
-  - Partners Production Secret Openapi.Yml
+  - Offers
   properties:
   - type: OpenAPI
-    url: openapi/recruitee-partners-production-secret-openapi.yml
-- aid: recruitee:recruitee-partners-release-candidate-secret
-  name: Recruitee Partners Release Candidate Secret Openapi.Yml API
-  description: >-
-    The Partners Release Candidate Secret Openapi.Yml API from Recruitee — 3 operation(s) for partners
-    release candidate secret openapi.yml.
+    url: openapi/recruitee-offers-api-openapi.yml
+- aid: recruitee:recruitee-p-api
+  name: Recruitee P API
+  description: The P API from Recruitee — 5 operation(s) for p.
   humanURL: https://docs.recruitee.com/reference/getting-started
   baseURL: https://api.recruitee.com/c/{company_id}
   tags:
-  - Partners Release Candidate Secret Openapi.Yml
+  - P
   properties:
   - type: OpenAPI
-    url: openapi/recruitee-partners-release-candidate-secret-openapi.yml
-- aid: recruitee:recruitee-partners-release-candidate-token
-  name: Recruitee Partners Release Candidate Token Openapi.Yml API
-  description: >-
-    The Partners Release Candidate Token Openapi.Yml API from Recruitee — 1 operation(s) for partners
-    release candidate token openapi.yml.
-  humanURL: https://docs.recruitee.com/reference/getting-started
-  baseURL: https://api.recruitee.com/c/{company_id}
-  tags:
-  - Partners Release Candidate Token Openapi.Yml
-  properties:
-  - type: OpenAPI
-    url: openapi/recruitee-partners-release-candidate-token-openapi.yml
-- aid: recruitee:recruitee-private-api-staging
-  name: Recruitee Private Api Staging Openapi.Yml API
-  description: >-
-    The Private Api Staging Openapi.Yml API from Recruitee — 2 operation(s) for private api staging openapi.yml.
-  humanURL: https://docs.recruitee.com/reference/getting-started
-  baseURL: https://api.recruitee.com/c/{company_id}
-  tags:
-  - Private Api Staging Openapi.Yml
-  properties:
-  - type: OpenAPI
-    url: openapi/recruitee-private-api-staging-openapi.yml
-
+    url: openapi/recruitee-p-api-openapi.yml
 features:
   - name: Applicant Tracking
     description: >-
