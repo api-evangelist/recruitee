@@ -6,6 +6,7 @@ source:
 checked:
 - https://composio.dev/toolkits/recruitee
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/meltano/hub
 - https://monid.ai/tools/recruitee
 - https://n8n.io/integrations/recruitee/
 - https://zapier.com/api/v4/apps/
@@ -516,6 +517,41 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-recruitee--airbyte
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Recruitee
+    matched_domain: recruitee.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-recruitee--airbyte
+    - tap-recruitee--rawwar
+    - tap-recruitee--tahasadiki
+    maintenance_status:
+    - active
+    - beta
+    - unknown
+    quality:
+    - bronze
+    - silver
+    - unknown
+    builder: 'community (Meltano Hub variant maintainers: airbyte, rawwar, tahasadiki)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates:
 - title: Send new candidate applications in Recruitee to Slack
   url: https://zapier.com/apps/recruitee/integrations/slack/1099513/send-new-candidate-applications-in-recruitee-to-slack
