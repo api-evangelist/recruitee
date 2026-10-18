@@ -474,3 +474,64 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: recruitee-meltano
+  label: Meltano
+  partner: meltano
+  partner_name: Meltano
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  evidence: https://hub.meltano.com/extractors/tap-recruitee--airbyte
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Recruitee
+    matched_domain: recruitee.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-recruitee--airbyte
+    - tap-recruitee--rawwar
+    - tap-recruitee--tahasadiki
+    maintenance_status:
+    - active
+    - beta
+    - unknown
+    quality:
+    - bronze
+    - silver
+    - unknown
+    builder: 'community (Meltano Hub variant maintainers: airbyte, rawwar, tahasadiki)'
+  status: pending-partner-spec
+  arazzo: null
+- slug: recruitee-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A4GFQ1P2Q-tellent-recruitee
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: recruitee-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/HHd5EN06TAKm7M1KKsEgag
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
