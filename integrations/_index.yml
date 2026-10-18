@@ -507,7 +507,7 @@
     - silver
     - unknown
     builder: 'community (Meltano Hub variant maintainers: airbyte, rawwar, tahasadiki)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: recruitee-slack-own
   label: Slack (own)
